@@ -46,111 +46,6 @@
           <li>SPF result: {{ result.spf_result }}</li>
           <li>DMARC TXT: <pre>{{ result.dmarc_txt or '(none)' }}</pre></li>
         </ul>
-<style>/* General page style */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f9f9f9, #e3f2fd);
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    max-width: 900px;
-    margin: 2rem auto;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-h1, h2, h3 {
-    color: #333;
-}
-
-.email-form label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: 600;
-}
-
-.email-form input[type="file"] {
-    margin-top: 0.5rem;
-}
-
-.email-form textarea {
-    width: 100%;
-    height: 200px;
-    padding: 1rem;
-    font-family: monospace;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-top: 0.5rem;
-    resize: vertical;
-    transition: border 0.3s;
-}
-
-.email-form textarea:focus {
-    border-color: #2196f3;
-    outline: none;
-}
-
-.btn {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.7rem 1.5rem;
-    background: #2196f3;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background: #0b79d0;
-}
-
-.result {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: #f0f4f8;
-    border-left: 5px solid #2196f3;
-    border-radius: 6px;
-}
-
-.good {
-    color: green;
-    font-weight: bold;
-}
-
-.bad {
-    color: red;
-    font-weight: bold;
-}
-
-.error {
-    color: red;
-    font-weight: bold;
-    margin-top: 1rem;
-}
-
-pre {
-    background: #e0e0e0;
-    padding: 0.5rem;
-    border-radius: 4px;
-    overflow-x: auto;
-}
-
-ul {
-    list-style: disc inside;
-    padding-left: 0;
-}
-
-.info p {
-    margin: 0.2rem 0;
-}</style>
         <h3>Reasons / Details</h3>
         <ul>
           {% for r in result.reasons %}
@@ -162,4 +57,5 @@ ul {
   </div>
 </body>
 </html>
+
 
