@@ -1,0 +1,5 @@
+flask
+dkimpy
+pyspf
+dnspython
+python-dotenv

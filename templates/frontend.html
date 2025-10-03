@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Email Spoof Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Email Spoof Detector</h1>
+    <p>Provide an email: either upload a <code>.eml</code> file or paste the full raw email (headers + body).</p>
+
+    <form method="POST" action="/analyze" enctype="multipart/form-data" class="email-form">
+      <label class="file-label">Upload .eml file
+        <input type="file" name="eml_file" accept=".eml,text/*">
+      </label>
+
+      <label>Or paste raw email:</label>
+      <textarea name="raw_email" placeholder="Paste full raw message here..."></textarea>
+
+      <button type="submit" class="btn">Analyze</button>
+    </form>
+
+    {% if error %}
+      <div class="error">⚠ Error: {{ error }}</div>
+    {% endif %}
+
+    {% if result %}
+      <div class="result">
+        <h2>Verdict: 
+          <span class="{{ 'good' if result.verdict and 'Legitimate' in result.verdict else 'bad' }}">
+            {{ result.verdict }}
+          </span>
+        </h2>
+
+        <div class="info">
+          <p><strong>Subject:</strong> {{ result.subject }}</p>
+          <p><strong>From:</strong> {{ result.from }}</p>
+          <p><strong>Return-Path:</strong> {{ result.return_path or '(none)' }}</p>
+          <p><strong>Sending IP:</strong> {{ result.sending_ip or '(not found)' }}</p>
+        </div>
+
+        <h3>Technical Checks</h3>
+        <ul>
+          <li>DKIM valid: {{ result.dkim_ok }}</li>
+          <li>SPF result: {{ result.spf_result }}</li>
+          <li>DMARC TXT: <pre>{{ result.dmarc_txt or '(none)' }}</pre></li>
+        </ul>
+
+        <h3>Reasons / Details</h3>
+        <ul>
+          {% for r in result.reasons %}
+            <li>{{ r }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
